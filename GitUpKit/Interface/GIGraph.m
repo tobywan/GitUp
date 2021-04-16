@@ -23,7 +23,8 @@
 #define __COLORIZE_BRANCHES__ 0
 #endif
 
-#define kStaleBranchInterval (60 * 24 * 3600)  // 60 days
+#define kStaleBranchIntervalDays 120
+#define kStaleBranchIntervalSecs( kStaleBranchIntervalDays * 24 * 3600)  //  in seconds
 
 #define COMMIT_SKIPPED(c) skipped[c.autoIncrementID]
 #define MAP_COMMIT_TO_NODE(c) _mapping[c.autoIncrementID]
@@ -108,7 +109,7 @@ static void _ReleaseCallBack(CFAllocatorRef allocator, const void* value) {
 }
 
 - (void)_generateGraph {
-  NSTimeInterval staleTime = [NSDate timeIntervalSinceReferenceDate] - kStaleBranchInterval;
+  NSTimeInterval staleTime = [NSDate timeIntervalSinceReferenceDate] - kStaleBranchIntervalSecs;
   GCOrderedSet* tips = [[GCOrderedSet alloc] init];
   NSMutableSet* upstreamTips = [[NSMutableSet alloc] init];
   GC_POINTER_LIST_ALLOCATE(skipList, 32);
