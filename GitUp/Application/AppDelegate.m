@@ -148,7 +148,7 @@
                                                                      }
                                                                      [document showWindows];
                                                                    }
-                                                                   
+
                                                                    if (documentWasAlreadyOpen) {
                                                                      if ((NSUInteger)windowModeID != NSNotFound) {
                                                                        [(Document*)document setWindowModeID:windowModeID];
